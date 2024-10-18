@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             val line = lines[i]
             Log.d(TAG, line)
             var parsed = line.split(" ").filter { it.isNotEmpty() }
-            if (parsed.isEmpty()) {
+            if (parsed.isEmpty() || parsed[0].startsWith("//")) {
                 i++
                 continue
             }
