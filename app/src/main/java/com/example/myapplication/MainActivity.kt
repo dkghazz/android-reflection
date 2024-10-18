@@ -11,7 +11,8 @@ import kotlinx.coroutines.withContext
 import java.lang.reflect.Proxy
 
 class MainActivity : AppCompatActivity() {
-    val args = mutableMapOf<String, MyObject>()
+    // NOTE: args can cause memory leak or OOM. Because it stores objects that might be not used anymore.
+    private val args = mutableMapOf<String, MyObject>()
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
@@ -23,26 +24,26 @@ class MainActivity : AppCompatActivity() {
 
         args["null"] = MyObject("", null)
         args["this"] = MyObject(this.javaClass.name, this)
-        args["root"] = MyObject(binding.content.javaClass.name, binding.content)
+        args["root"] = MyObject(binding.rootOfInstructions.javaClass.name, binding.rootOfInstructions)
 
         binding.button.setOnClickListener {
             val lines = binding.editText.text.toString().split("\n")
             core(lines)
         }
-        runCore()
+        readFromFileAndRunCore()
     }
 
     private fun core(lines: List<String>) {
         var i = 0
         while (i < lines.size) {
             val line = lines[i]
-            Log.d("ttt", line)
+            Log.d(TAG, line)
             var parsed = line.split(" ").filter { it.isNotEmpty() }
             if (parsed.isEmpty()) {
                 i++
                 continue
             }
-            Log.d("ttt", parsed.toString())
+            Log.d(TAG, parsed.toString())
             var returned: Any? = null
             if (parsed[0] == "invoke") {
                 val className = parsed[1]
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                         break
                     }
                     val argParsed = arg.split("::")
-                    argsArray.add(MyObject(argParsed[0], fff(argParsed[1]).realObject))
+                    argsArray.add(MyObject(argParsed[0], getArgOrArray(argParsed[1]).realObject))
                 }
                 returned = invoke(className, methodName, invokerObject, *argsArray.toTypedArray())
             } else if (parsed[0] == "construct") {
@@ -107,9 +108,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun runCore() {
-        val dd = R.raw.test
-        val isr = resources.openRawResource(dd).bufferedReader()
+    private fun readFromFileAndRunCore() {
+        val isr = resources.openRawResource(R.raw.test).bufferedReader()
 
         lifecycleScope.launch {
             val lines = mutableListOf<String>()
@@ -138,11 +138,13 @@ class MainActivity : AppCompatActivity() {
             return Float::class.java
         } else if (className == "long") {
             return Long::class.java
+        } else if (className == "boolean") {
+            return Boolean::class.java
         }
         return Class.forName(className)
     }
 
-    private fun fff(args: String): MyObject {
+    private fun getArgOrArray(args: String): MyObject {
         if (args[0] == '{' && args[args.length - 1]== '}') {
             val argList = args.substring(1, args.length - 1).split(',')
             val ll = mutableListOf<String>()
@@ -172,6 +174,14 @@ class MainActivity : AppCompatActivity() {
         val possibleFloat = arg.toFloatOrNull()
         if (possibleFloat != null) {
             return MyObject("float", possibleFloat)
+        }
+        val possibleLong = arg.toLongOrNull()
+        if (possibleLong != null) {
+            return MyObject("long", possibleLong)
+        }
+        val possibleBoolean = arg.toBooleanStrictOrNull()
+        if (possibleBoolean != null) {
+            return MyObject("boolean", possibleBoolean)
         }
         return args[arg] ?: MyObject("", null)
     }
@@ -206,4 +216,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     inner class MyObject(val className: String, val realObject: Any?)
+
+    companion object {
+        private const val TAG = "MainActivity"
+    }
 }

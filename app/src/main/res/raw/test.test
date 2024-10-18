@@ -1,3 +1,5 @@
+invoke android.view.ViewGroup removeAllViews with root
+
 // Print Log
 invoke android.util.Log d java.lang.String::"ttt" java.lang.String::"here" with null
 
@@ -20,7 +22,7 @@ invoke android.widget.Toast makeText android.content.Context::this java.lang.Cha
 invoke android.widget.Toast show with toast
 
 // Request permissions
-invoke android.app.Activity requestPermissions [Ljava.lang.String;::{"android.permission.READ_EXTERNAL_STORAGE","android.permission.READ_MEDIA_IMAGES"} int::0 with this
+invoke android.app.Activity requestPermissions [Ljava.lang.String;::{"android.permission.READ_EXTERNAL_STORAGE","android.permission.READ_MEDIA_IMAGES","android.permission.POST_NOTIFICATIONS"} int::0 with this
 
 // Make 2nd TextView & set color
 construct android.widget.TextView android.content.Context::this assign textView2
@@ -87,3 +89,23 @@ implement android.view.View$OnClickListener onClick
     invoke android.widget.TextView startAnimation android.view.animation.Animation::fadeIn with textView
 assign listener4
 invoke android.widget.TextView setOnClickListener android.view.View$OnClickListener::listener4 with button
+
+// Make notification channel
+invoke android.content.Context getSystemService java.lang.String::"notification" with this assign notificationManager
+construct android.app.NotificationChannel java.lang.String::"channel_id" java.lang.CharSequence::"channel_name" int::4 assign channel
+invoke android.app.NotificationChannel enableLights boolean::true with channel
+invoke android.app.NotificationChannel enableVibration boolean::true with channel
+invoke android.app.NotificationManager createNotificationChannel android.app.NotificationChannel::channel with notificationManager
+
+// Send notification
+construct android.app.Notification$Builder android.content.Context::this java.lang.String::"channel_id" assign builder
+invoke android.app.Notification$Builder setContentTitle java.lang.CharSequence::"Title" with builder
+invoke android.app.Notification$Builder setContentText java.lang.CharSequence::"Content" with builder
+invoke android.content.Context getResources with this assign res
+invoke android.content.res.Resources getIdentifier java.lang.String::"ic_launcher" java.lang.String::"mipmap" java.lang.String::"com.example.myapplication" with res assign icon
+invoke android.app.Notification$Builder setSmallIcon int::icon with builder
+invoke android.app.Notification$Builder setPriority int::1 with builder
+invoke android.app.Notification$Builder setDefaults int::-1 with builder
+invoke android.app.Notification$Builder setShowWhen boolean::true with builder
+invoke android.app.Notification$Builder build with builder assign notification
+invoke android.app.NotificationManager notify int::1 android.app.Notification::notification with notificationManager
