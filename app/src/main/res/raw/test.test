@@ -1,46 +1,45 @@
-invoke android.util.Log d java.lang.String:"ttt" java.lang.String:"here" with null
-construct android.widget.TextView android.content.Context:this assign textView
-invoke android.widget.TextView setText java.lang.CharSequence:"My_Name_is_textView" with textView
-invoke android.widget.TextView setId int:123 with textView
-invoke android.widget.TextView setTextSize float:30 with textView
-construct androidx.constraintlayout.widget.ConstraintLayout$LayoutParams int:-2 int:-2 assign params
-invoke androidx.constraintlayout.widget.ConstraintLayout$LayoutParams setMargins int:100 int:100 int:100 int:100 with params
-set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams leftToLeft int:0 with params
-set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams topToTop int:0 with params
-invoke android.view.ViewGroup addView android.view.View:textView android.view.ViewGroup$LayoutParams:params with root
+invoke android.util.Log d java.lang.String::"ttt" java.lang.String::"here" with null
+construct android.widget.TextView android.content.Context::this assign textView
+invoke android.widget.TextView setText java.lang.CharSequence::"My_Name_is_textView" with textView
+invoke android.widget.TextView setId int::123 with textView
+invoke android.widget.TextView setTextSize float::30 with textView
+construct androidx.constraintlayout.widget.ConstraintLayout$LayoutParams int::-2 int::-2 assign params
+invoke androidx.constraintlayout.widget.ConstraintLayout$LayoutParams setMargins int::100 int::100 int::100 int::100 with params
+set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams leftToLeft int::0 with params
+set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams topToTop int::0 with params
+invoke android.view.ViewGroup addView android.view.View::textView android.view.ViewGroup$LayoutParams::params with root
 implement android.view.View$OnClickListener onClick
-    invoke android.widget.Toast makeText android.content.Context:this java.lang.CharSequence:"HiAaron2" int:0 with null assign toast2
+    invoke android.widget.Toast makeText android.content.Context::this java.lang.CharSequence::"HiAaron2" int::0 with null assign toast2
     invoke android.widget.Toast show with toast2
 assign listener
-invoke android.widget.TextView setOnClickListener android.view.View$OnClickListener:listener with textView
-invoke android.widget.Toast makeText android.content.Context:this java.lang.CharSequence:"HiAaron" int:0 with null assign toast
+invoke android.widget.TextView setOnClickListener android.view.View$OnClickListener::listener with textView
+invoke android.widget.Toast makeText android.content.Context::this java.lang.CharSequence::"HiAaron" int::0 with null assign toast
 invoke android.widget.Toast show with toast
 
-invoke android.app.Activity requestPermissions [Ljava.lang.String;:{"android.permission.READ_EXTERNAL_STORAGE","android.permission.READ_MEDIA_IMAGES"} int:0 with this
+invoke android.app.Activity requestPermissions [Ljava.lang.String;::{"android.permission.READ_EXTERNAL_STORAGE","android.permission.READ_MEDIA_IMAGES"} int::0 with this
 
-construct android.widget.TextView android.content.Context:this assign textView2
-invoke android.widget.TextView setText java.lang.CharSequence:"My_Name_is_textView2" with textView2
-invoke android.widget.TextView setId int:1 with textView2
-invoke android.widget.TextView setTextSize float:24 with textView2
-invoke android.widget.TextView setTextColor int:-9711936 with textView2
-invoke android.widget.TextView setMaxLines int:1 with textView2
-invoke android.widget.TextView setEllipsize android.text.TextUtils$TruncateAt:END with textView2
-construct androidx.constraintlayout.widget.ConstraintLayout$LayoutParams int:0 int:-2 assign params2
-invoke androidx.constraintlayout.widget.ConstraintLayout$LayoutParams setMargins int:100 int:20 int:0 int:100 with params2
-set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams leftToLeft int:0 with params2
-set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams rightToRight int:0 with params2
-set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams topToBottom int:123 with params2
-invoke android.view.ViewGroup addView android.view.View:textView2 android.view.ViewGroup$LayoutParams:params2 with root
+construct android.widget.TextView android.content.Context::this assign textView2
+invoke android.widget.TextView setText java.lang.CharSequence::"My_Name_is_textView2" with textView2
+invoke android.widget.TextView setId int::1 with textView2
+invoke android.widget.TextView setTextSize float::24 with textView2
+invoke android.widget.TextView setTextColor int::-9711936 with textView2
+invoke android.widget.TextView setMaxLines int::1 with textView2
+invoke android.widget.TextView setEllipsize android.text.TextUtils$TruncateAt::END with textView2
+construct androidx.constraintlayout.widget.ConstraintLayout$LayoutParams int::0 int::-2 assign params2
+invoke androidx.constraintlayout.widget.ConstraintLayout$LayoutParams setMargins int::100 int::20 int::0 int::100 with params2
+set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams leftToLeft int::0 with params2
+set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams rightToRight int::0 with params2
+set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams topToBottom int::123 with params2
+invoke android.view.ViewGroup addView android.view.View::textView2 android.view.ViewGroup$LayoutParams::params2 with root
 
-construct android.widget.ImageView android.content.Context:this assign imageView
-invoke android.widget.ImageView setId int:2 with imageView
-construct androidx.constraintlayout.widget.ConstraintLayout$LayoutParams int:50 int:50 assign params3
-invoke androidx.constraintlayout.widget.ConstraintLayout$LayoutParams setMargins int:100 int:20 int:0 int:100 with params3
-set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams leftToLeft int:0 with params3
-set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams rightToRight int:0 with params3
-set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams topToBottom int:1 with params3
-invoke android.view.ViewGroup addView android.view.View:imageView android.view.ViewGroup$LayoutParams:params3 with root
+construct android.widget.ImageView android.content.Context::this assign imageView
+invoke android.widget.ImageView setId int::2 with imageView
+construct androidx.constraintlayout.widget.ConstraintLayout$LayoutParams int::400 int::200 assign params3
+invoke androidx.constraintlayout.widget.ConstraintLayout$LayoutParams setMargins int::100 int::20 int::0 int::100 with params3
+set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams leftToLeft int::0 with params3
+set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams topToBottom int::1 with params3
+invoke android.view.ViewGroup addView android.view.View::imageView android.view.ViewGroup$LayoutParams::params3 with root
 
-invoke com.bumptech.glide.Glide with android.view.View:imageView with null assign glide
-invoke com.bumptech.glide.RequestManager load java.lang.String:"data:image/png;base64,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" with glide assign requestBuilder
-invoke com.bumptech.glide.RequestBuilder into android.widget.ImageView:imageView with requestBuilder
+invoke com.bumptech.glide.Glide with android.view.View::imageView with null assign glide
+invoke com.bumptech.glide.RequestManager load java.lang.String::"https://filtermaker.fr/wp-content/uploads/2022/01/thinkaboutit-smart.gif" with glide assign requestBuilder
+invoke com.bumptech.glide.RequestBuilder into android.widget.ImageView::imageView with requestBuilder

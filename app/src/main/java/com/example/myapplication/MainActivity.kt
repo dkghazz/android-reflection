@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                         invokerObject = getArg(parsed[i + 1]).realObject
                         break
                     }
-                    val argParsed = arg.split(":")
+                    val argParsed = arg.split("::")
                     argsArray.add(MyObject(argParsed[0], fff(argParsed[1]).realObject))
                 }
                 returned = invoke(className, methodName, invokerObject, *argsArray.toTypedArray())
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                     if (arg == "assign") {
                         break
                     }
-                    val argParsed = arg.split(":")
+                    val argParsed = arg.split("::")
                     argsArray.add(MyObject(argParsed[0], getArg(argParsed[1]).realObject))
                 }
                 returned = construct(className, *argsArray.toTypedArray())
@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
             } else if (parsed[0] == "set") {
                 val className = parsed[1]
                 val fieldName = parsed[2]
-                val value = getArg(parsed[3].split(":")[1])
+                val value = getArg(parsed[3].split("::")[1])
                 if (parsed[4] != "with") {
                     throw Exception("Invalid set statement")
                 }
