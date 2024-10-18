@@ -1,4 +1,7 @@
+// Print Log
 invoke android.util.Log d java.lang.String::"ttt" java.lang.String::"here" with null
+
+// Make TextView & set click listener
 construct android.widget.TextView android.content.Context::this assign textView
 invoke android.widget.TextView setText java.lang.CharSequence::"My_Name_is_textView" with textView
 invoke android.widget.TextView setId int::123 with textView
@@ -16,8 +19,10 @@ invoke android.widget.TextView setOnClickListener android.view.View$OnClickListe
 invoke android.widget.Toast makeText android.content.Context::this java.lang.CharSequence::"HiAaron" int::0 with null assign toast
 invoke android.widget.Toast show with toast
 
+// Request permissions
 invoke android.app.Activity requestPermissions [Ljava.lang.String;::{"android.permission.READ_EXTERNAL_STORAGE","android.permission.READ_MEDIA_IMAGES"} int::0 with this
 
+// Make 2nd TextView & set color
 construct android.widget.TextView android.content.Context::this assign textView2
 invoke android.widget.TextView setText java.lang.CharSequence::"My_Name_is_textView2" with textView2
 invoke android.widget.TextView setId int::1 with textView2
@@ -32,6 +37,7 @@ set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams rightToRight 
 set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams topToBottom int::123 with params2
 invoke android.view.ViewGroup addView android.view.View::textView2 android.view.ViewGroup$LayoutParams::params2 with root
 
+// Make ImageView & set image with Glide
 construct android.widget.ImageView android.content.Context::this assign imageView
 invoke android.widget.ImageView setId int::2 with imageView
 construct androidx.constraintlayout.widget.ConstraintLayout$LayoutParams int::400 int::200 assign params3
@@ -44,6 +50,7 @@ invoke com.bumptech.glide.Glide with android.view.View::imageView with null assi
 invoke com.bumptech.glide.RequestManager load java.lang.String::"https://filtermaker.fr/wp-content/uploads/2022/01/thinkaboutit-smart.gif" with glide assign requestBuilder
 invoke com.bumptech.glide.RequestBuilder into android.widget.ImageView::imageView with requestBuilder
 
+// Make PopupWindow
 construct androidx.cardview.widget.CardView android.content.Context::this assign cardView
 construct android.widget.TextView android.content.Context::this assign textView3
 invoke android.widget.TextView setText java.lang.CharSequence::"This_is_PopupWindow" with textView3
@@ -64,6 +71,7 @@ implement android.view.View$OnClickListener onClick
 assign listener3
 invoke android.widget.TextView setOnClickListener android.view.View$OnClickListener::listener2 with imageView
 
+// Make Button & set click listener to animate
 construct android.widget.Button android.content.Context::this assign button
 invoke android.widget.Button setText java.lang.CharSequence::"Click_Me" with button
 invoke android.widget.Button setId int::3 with button
