@@ -43,3 +43,23 @@ invoke android.view.ViewGroup addView android.view.View::imageView android.view.
 invoke com.bumptech.glide.Glide with android.view.View::imageView with null assign glide
 invoke com.bumptech.glide.RequestManager load java.lang.String::"https://filtermaker.fr/wp-content/uploads/2022/01/thinkaboutit-smart.gif" with glide assign requestBuilder
 invoke com.bumptech.glide.RequestBuilder into android.widget.ImageView::imageView with requestBuilder
+
+construct androidx.cardview.widget.CardView android.content.Context::this assign cardView
+construct android.widget.TextView android.content.Context::this assign textView3
+invoke android.widget.TextView setText java.lang.CharSequence::"This_is_PopupWindow" with textView3
+invoke android.widget.TextView setTextSize float::14 with textView3
+invoke android.widget.TextView setPadding int::20 int::20 int::20 int::20 with textView3
+invoke androidx.cardview.widget.CardView addView android.view.View::textView3 with cardView
+invoke androidx.cardview.widget.CardView setCardBackgroundColor int::-33333 with cardView
+invoke androidx.cardview.widget.CardView setRadius float::20 with cardView
+invoke androidx.cardview.widget.CardView setCardElevation float::10 with cardView
+construct android.widget.PopupWindow android.view.View::cardView int::-2 int::-2 assign popupWindow
+implement android.view.View$OnClickListener onClick
+    invoke android.widget.PopupWindow showAsDropDown android.view.View::imageView int::0 int::20 with popupWindow
+    invoke android.widget.TextView setOnClickListener android.view.View$OnClickListener::listener3 with imageView
+assign listener2
+implement android.view.View$OnClickListener onClick
+    invoke android.widget.PopupWindow dismiss with popupWindow
+    invoke android.widget.TextView setOnClickListener android.view.View$OnClickListener::listener2 with imageView
+assign listener3
+invoke android.widget.TextView setOnClickListener android.view.View$OnClickListener::listener2 with imageView
