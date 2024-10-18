@@ -2,7 +2,6 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.util.Log
-import android.view.animation.AlphaAnimation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.databinding.ActivityMainBinding
@@ -27,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         args["root"] = MyObject(binding.content.javaClass.name, binding.content)
 
         binding.button.setOnClickListener {
-            val line = binding.editText.text
-            core(listOf(line.toString()))
+            val lines = binding.editText.text.toString().split("\n")
+            core(lines)
         }
         runCore()
     }
@@ -137,6 +136,8 @@ class MainActivity : AppCompatActivity() {
             return Int::class.java
         } else if (className == "float") {
             return Float::class.java
+        } else if (className == "long") {
+            return Long::class.java
         }
         return Class.forName(className)
     }
@@ -167,6 +168,10 @@ class MainActivity : AppCompatActivity() {
         val possibleInt = arg.toIntOrNull()
         if (possibleInt != null) {
             return MyObject("int", possibleInt)
+        }
+        val possibleFloat = arg.toFloatOrNull()
+        if (possibleFloat != null) {
+            return MyObject("float", possibleFloat)
         }
         return args[arg] ?: MyObject("", null)
     }

@@ -63,3 +63,19 @@ implement android.view.View$OnClickListener onClick
     invoke android.widget.TextView setOnClickListener android.view.View$OnClickListener::listener2 with imageView
 assign listener3
 invoke android.widget.TextView setOnClickListener android.view.View$OnClickListener::listener2 with imageView
+
+construct android.widget.Button android.content.Context::this assign button
+invoke android.widget.Button setText java.lang.CharSequence::"Click_Me" with button
+invoke android.widget.Button setId int::3 with button
+construct androidx.constraintlayout.widget.ConstraintLayout$LayoutParams int::-2 int::-2 assign params4
+invoke androidx.constraintlayout.widget.ConstraintLayout$LayoutParams setMargins int::100 int::20 int::0 int::100 with params4
+set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams leftToLeft int::0 with params4
+set androidx.constraintlayout.widget.ConstraintLayout$LayoutParams topToBottom int::2 with params4
+invoke android.view.ViewGroup addView android.view.View::button android.view.ViewGroup$LayoutParams::params4 with root
+
+implement android.view.View$OnClickListener onClick
+    construct android.view.animation.AlphaAnimation float::0.0 float::1.0 assign fadeIn
+    invoke android.view.animation.AlphaAnimation setDuration long::1000 with fadeIn
+    invoke android.widget.TextView startAnimation android.view.animation.Animation::fadeIn with textView
+assign listener4
+invoke android.widget.TextView setOnClickListener android.view.View$OnClickListener::listener4 with button
